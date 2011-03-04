@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript" charset="UTF-8">
+<title>SAMPLE - jquery.ui.phantomDrag.js</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script>google.load("jquery", 1)</script>
+<script>google.load("jqueryui", 1)</script>
+<script type="text/javascript" src="jquery.ui.phantomDrag.min.js" charset="UTF-8"></script>
+</head>
+<body>
+
+<h1>SAMPLE - jquery.ui.phantomDrag.js</h1>
+
+<div id="autoIndex"></div>
+
+<h2>取得できる値</h2>
+
+<div id="draggable1"> div#draggable1 </div>
+<div id="info1" class="info">
+ドラッグ状態 <input type="text" id="info1-drag-status" value=""><br>
+<dl>
+<dt>X座標</dt>
+<dd>
+開始位置 <input type="text" id="info1-drag-fx" value=""><br>
+現在位置 <input type="text" id="info1-drag-x" value=""><br>
+目的位置 <input type="text" id="info1-drag-dx" value=""><br>
+速度（pixel per frame） <input type="text" id="info1-drag-sx" value="">
+</dd>
+<dt>Y座標</dt>
+<dd>
+開始位置 <input type="text" id="info1-drag-fy" value=""><br>
+現在位置 <input type="text" id="info1-drag-y" value=""><br>
+目的位置 <input type="text" id="info1-drag-dy" value=""><br>
+速度（pixel per frame） <input type="text" id="info1-drag-sy" value="">
+</dd>
+<!-- /div#info1 --></div>
+<style type="text/css">
+	#draggable1 {
+		width: 100px;
+		height: 100px;
+		margin: 20px 0 0;
+		padding: 20px;
+		color: #fcfcfc;
+		background: #559bf1;
+	}
+</style>
+<script>
+	$(function () {
+
+		var info_fx = $('#info1-drag-fx'),
+		info_x = $('#info1-drag-x'),
+		info_dx = $('#info1-drag-dx'),
+		info_sx = $('#info1-drag-sx'),
+		info_fy = $('#info1-drag-fy'),
+		info_y = $('#info1-drag-y'),
+		info_dy = $('#info1-drag-dy'),
+		info_sy = $('#info1-drag-sy');
+
+		$('#draggable1')
+		.phantomDrag()
+		.bind('phantomdrag-start',
+			function (e) {
+				$('#info1-drag-status').val('Drag開始');
+			})
+		.bind('phantomdrag-move',
+			function (e) {
+				info_fx.val($(e.target).data('phantomdrag-fx'));
+				info_x.val($(e.target).data('phantomdrag-x'));
+				info_dx.val($(e.target).data('phantomdrag-dx'));
+				info_sx.val($(e.target).data('phantomdrag-sx'));
+				info_fy.val($(e.target).data('phantomdrag-fy'));
+				info_y.val($(e.target).data('phantomdrag-y'));
+				info_dy.val($(e.target).data('phantomdrag-dy'));
+				info_sy.val($(e.target).data('phantomdrag-sy'));
+			})
+		.bind('phantomdrag-release',
+			function (e) {
+				$('#info1-drag-status').val('Drag終了');
+			})
+		.bind('phantomdrag-stop',
+			function (e) {
+				$('#info1-drag-status').val('慣性移動終了');
+			})
+	});
+</script>
+
+<h2>ドラッグされた要素自身の移動に使う</h2>
+
+<div style="position: relative; width:800px; height:400px; margin: 20px 0 0; border:1px solid #454545;">
+<div class="draggable2"> div.draggable2 </div>
+<div class="draggable2"> div.draggable2 </div>
+<div class="draggable2"> div.draggable2 </div>
+<div class="draggable2"> div.draggable2 </div>
+</div>
+<style type="text/css">
+	.draggable2 {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		padding: 20px;
+		color: #fcfcfc;
+		background: #559bf1;
+	}
+</style>
+<script>
+	$(function () {
+
+		var elements = $('.draggable2');
+
+		elements
+		.phantomDrag({
+			xmax: 660,
+			xmin: 0,
+			ymax: 260,
+			ymin: 0,
+			delay: 13
+		})
+		.bind('phantomdrag-start',
+			function (e) {
+				elements.css({
+					background: '#559bf1'
+				});
+				$(e.target).css({
+					background: '#f2a649'
+				})
+			})
+		.bind('phantomdrag-move',
+			function (e) {
+				$(e.target).css({
+					top: $(e.target).data('phantomdrag-y'),
+					left: $(e.target).data('phantomdrag-x')
+				})
+			})
+		.bind('phantomdrag-release',
+			function (e) {
+				$(e.target).css({
+					background: '#74e87a'
+				})
+			})
+		.bind('phantomdrag-stop',
+			function (e) {
+				$(e.target).css({
+					background: '#559bf1'
+				})
+			});
+	});
+</script>
+
+<h2>掴んだ要素と別の要素が動く</h2>
+
+<div style="position: relative; width:800px; height:400px; margin: 20px 0 0; border:1px solid #454545;">
+<div id="draggable3"> div<br>#draggable3 </div>
+<div id="mover1"> div<br>#mover1 </div>
+</div>
+<style type="text/css">
+	#draggable3 {
+		position: absolute;
+		top: 125px;
+		left: 325px;
+		width: 100px;
+		height: 100px;
+		padding: 20px;
+		color: #fcfcfc;
+		background: #559bf1;
+	}
+	#mover1 {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		padding: 20px;
+		color: #fcfcfc;
+		background: #559bf1;
+	}
+</style>
+<script>
+	$(function () {
+
+		var element = $('#draggable3'),
+			mover = $('#mover1');
+
+		element
+		.phantomDrag({
+			xmax: 71,
+			xmin: 0,
+			ymax: 31,
+			ymin: 0,
+			stopSpeedBorder: 0.01
+		})
+		.bind('phantomdrag-start',
+			function (e) {
+				mover.css({
+					background: '#f2a649'
+				});
+			})
+		.bind('phantomdrag-move',
+			function (e) {
+				mover.css({
+					top: element.data('phantomdrag-y') * 10,
+					left: element.data('phantomdrag-x') * 10
+				})
+			})
+		.bind('phantomdrag-release',
+			function (e) {
+				mover.css({
+					background: '#74e87a'
+				})
+			})
+		.bind('phantomdrag-stop',
+			function (e) {
+				mover.css({
+					background: '#559bf1'
+				})
+			});
+	});
+</script>
+
+<h2>掴んだ要素と別の要素が動く + 違った動きに変換</h2>
+
+<div style="position: relative; width:800px; height:400px; margin: 20px 0 0; border:1px solid #454545;">
+<div id="draggable4"> div<br>#draggable4 </div>
+<div id="mover2"> div<br>#mover2 </div>
+</div>
+<style type="text/css">
+	#draggable4 {
+		position: absolute;
+		top: 260px;
+		left: 100px;
+		width: 100px;
+		height: 100px;
+		padding: 20px;
+		color: #fcfcfc;
+		background: #559bf1;
+	}
+	#mover2 {
+		position: absolute;
+		top: 155px;
+		left: 455px;
+		width: 50px;
+		height: 50px;
+		padding: 20px;
+		color: #fcfcfc;
+		background: #559bf1;
+	}
+</style>
+<script>
+	$(function () {
+
+		var element = $('#draggable4'),
+			mover = $('#mover2'),
+			deg = 0,
+			r = 100,
+			centerX = 455,
+			centerY = 155,
+			radian = null;
+
+		element
+		.phantomDrag({
+			delay: 13
+		})
+		.bind('phantomdrag-start',
+			function (e) {
+				mover.css({
+					background: '#f2a649'
+				});
+			})
+		.bind('phantomdrag-move',
+			function (e) {
+
+				radian = Math.PI / 180 * deg;
+
+				mover.css({
+					top: centerY + r * Math.cos(radian),
+					left: centerX + r * Math.sin(radian)
+				})
+
+				deg += element.data('phantomdrag-sx');
+			})
+		.bind('phantomdrag-release',
+			function (e) {
+				mover.css({
+					background: '#74e87a'
+				})
+			})
+		.bind('phantomdrag-stop',
+			function (e) {
+				mover.css({
+					background: '#559bf1'
+				})
+			});
+	});
+</script>
+</body>
+</html>
