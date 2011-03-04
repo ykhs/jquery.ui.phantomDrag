@@ -1,4 +1,4 @@
-@charset "shift-jis";
+@charset "utf-8";
 
 /******************************************************************************
  * reset (YUI reset)
@@ -78,33 +78,6 @@ ol li {
 	padding: 1em;
 	color: #eee;
 	background: #333;
-}
-
-/**
- * myStyle
- */
-
-#footerIndex {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	padding: 10px 50px;
-	color: #fff;
-	background: #2d2d2d;
-}
-#footerIndex p {
-	margin: 0;
-}
-#footerIndex a {
-	color: #6ef;
-}
-#footerIndex li {
-	display: inline-block;
-	/display: inline;
-	/zoom: 1;
-	margin: 0 30px 0 0;
-	padding: 0;
-	line-height: 2;
 }
 
 .info {
