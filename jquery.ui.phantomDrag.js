@@ -21,7 +21,7 @@
 */
 
 /**
-* @class
+* @class 慣性ドラッグ機能を提供します
 * @name phantomDrag
 * @param {object} options 設定オブジェクト
 * @config {number} xmax X座標の最大値
@@ -30,8 +30,8 @@
 * @config {number} ymin Y座標の最小値
 * @config {number} delay ドラッグ追従の遅延具合。大きいほど遅く、0で遅延無し
 * @memberOf jQuery.ui
-* @description 要素をドラッグで移動したと仮定した値を jQuery.data に書き出します。<br>
-* ドラッグ中の各イベントに bind して、その値を流用することで様々な動きを実現します。<br><br>
+* @description 要素のドラッグ移動に慣性を加えた動きの値を jQuery.data に書き出します。
+* ドラッグ中のカスタムイベントに bind することで様々な動きを作ることが出来ます。<br><br>
 *
 * [Custom Event]<br>
 * phantomdrag-start: ドラッグ開始イベント<br>

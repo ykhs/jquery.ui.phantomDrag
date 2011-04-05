@@ -28,7 +28,7 @@
 <span class='line'> 21</span> */</span><span class="WHIT">
 <span class='line'> 22</span> 
 <span class='line'> 23</span> </span><span class="COMM">/**
-<span class='line'> 24</span> * @class
+<span class='line'> 24</span> * @class 慣性ドラッグ機能を提供します
 <span class='line'> 25</span> * @name phantomDrag
 <span class='line'> 26</span> * @param {object} options 設定オブジェクト
 <span class='line'> 27</span> * @config {number} xmax X座標の最大値
@@ -37,8 +37,8 @@
 <span class='line'> 30</span> * @config {number} ymin Y座標の最小値
 <span class='line'> 31</span> * @config {number} delay ドラッグ追従の遅延具合。大きいほど遅く、0で遅延無し
 <span class='line'> 32</span> * @memberOf jQuery.ui
-<span class='line'> 33</span> * @description 要素をドラッグで移動したと仮定した値を jQuery.data に書き出します。&lt;br>
-<span class='line'> 34</span> * ドラッグ中の各イベントに bind して、その値を流用することで様々な動きを実現します。&lt;br>&lt;br>
+<span class='line'> 33</span> * @description 要素のドラッグ移動に慣性を加えた動きの値を jQuery.data に書き出します。
+<span class='line'> 34</span> * ドラッグ中のカスタムイベントに bind することで様々な動きを作ることが出来ます。&lt;br>&lt;br>
 <span class='line'> 35</span> *
 <span class='line'> 36</span> * [Custom Event]&lt;br>
 <span class='line'> 37</span> * phantomdrag-start: ドラッグ開始イベント&lt;br>
