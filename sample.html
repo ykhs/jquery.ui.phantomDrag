@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript" charset="UTF-8">
 <title>SAMPLE - jquery.ui.phantomDrag.js</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script>google.load("jquery", 1)</script>
 <script>google.load("jqueryui", 1)</script>
@@ -12,7 +12,19 @@
 </head>
 <body>
 
-<h1>SAMPLE - jquery.ui.phantomDrag.js</h1>
+<article class="site-article">
+
+<header class="site-header">
+<h1 class="site-heading">SAMPLE - jquery.ui.phantomDrag.js</h1>
+</header>
+
+<nav class="site-nav">
+<h1>Navigation</h1>
+<ul>
+<li><a href="readme.html">Readme</a></li>
+<li><a href="sample.html">Samples</a></li>
+<li><a href="sample_slider.html">Sample - Slider</a></li>
+</ul>
 
 <dl>
 <dt>ykhs/jquery.ui.phantomDrag - GitHub</dt>
@@ -20,8 +32,10 @@
 <dt>jsDoc</dt>
 <dd><a href="./jsdoc/index.html">http://ykhs.github.com/jquery.ui.phantomDrag/jsdoc/index.html</a></dd>
 </dl>
+<!-- /nav.site-nav --></nav>
 
-<h2>取得できる値</h2>
+<section>
+<h1>取得できる値</h1>
 
 <div id="draggable1"> div#draggable1 </div>
 <div id="info1" class="info">
@@ -92,7 +106,7 @@
 	});
 </script>
 
-<h2>ドラッグされた要素自身の移動に使う</h2>
+<h1>ドラッグされた要素自身の移動に使う</h1>
 
 <div style="position: relative; width:800px; height:400px; margin: 20px 0 0; border:1px solid #454545;">
 <div class="draggable2"> div.draggable2 </div>
@@ -154,7 +168,7 @@
 	});
 </script>
 
-<h2>掴んだ要素と別の要素が動く</h2>
+<h1>掴んだ要素と別の要素が動く</h1>
 
 <div style="position: relative; width:800px; height:400px; margin: 20px 0 0; border:1px solid #454545;">
 <div id="draggable3"> div<br>#draggable3 </div>
@@ -222,7 +236,7 @@
 	});
 </script>
 
-<h2>掴んだ要素と別の要素が動く + 違った動きに変換</h2>
+<h1>掴んだ要素と別の要素が動く + 違った動きに変換</h1>
 
 <div style="position: relative; width:800px; height:400px; margin: 20px 0 0; border:1px solid #454545;">
 <div id="draggable4"> div<br>#draggable4 </div>
@@ -297,5 +311,9 @@
 			});
 	});
 </script>
+
+</section>
+<!-- /article.site-article --></article>
+
 </body>
 </html>
