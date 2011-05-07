@@ -134,6 +134,17 @@ html {
   color: #454545;
 }
 
+.site-nav h1 {
+  margin: 3em 0 0;
+  padding: 1em 0 0;
+  font-weight: bold;
+  border-top: 1px dashed #666;
+  color: #454545;
+}
+.site-nav ul {
+  margin: 1em 0 0;
+}
+
 p {
   margin: 1em 0 0;
 }
@@ -178,7 +189,7 @@ ol li {
   position: relative;
   width: 800px;
   height: 200px;
-  margin: 100px 0;
+  margin: 2em 0;
   overflow: hidden;
 }
 #slider ul {
