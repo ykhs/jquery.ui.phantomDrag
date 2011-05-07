@@ -5,20 +5,25 @@
 		// jQuery の要素集合をキャッシュ
 		var $slider_root = $('#slider'),
 			$slider_ul = $slider_root.find('ul'),
-			$slider_li = $slider_ul.find('li');
+			$slider_li = $slider_ul.find('li'),
+			sliderWidth = $slider_li.outerWidth(true) * $slider_li.size(),
+			viewWidth = 800;
 
 		// ul 要素の横幅を指定。
 		// 内包する li 要素が1列ぴったり並ぶサイズにしとく。
 		// こういうのは数が変わりやすいと思うので JS 側に任せたい。
 		$slider_ul.css(
 			'width',
-			$slider_li.outerWidth(true) * $slider_li.size()
+			sliderWidth
 		);
 
 		// プラグインを実行します
 		// これで、 $slider_ul の指す要素に phantomDrag() によって
 		// イベントや .data() の値が与えられます。
-		$slider_ul.phantomDrag();
+		$slider_ul.phantomDrag({
+			xmax: 0,
+			xmin: -(sliderWidth - viewWidth)
+		});
 
 		// 'phantomdrag-move' っていうカスタムイベントを拾います。
 		// これはマウスドラッグで慣性移動してる最中、大体常に配信されるイベントです。
