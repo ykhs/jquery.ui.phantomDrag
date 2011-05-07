@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>README - jquery.ui.phantomDrag.js</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<h1>README - jquery.ui.phantomDrag.js</h1>
+<article class="site-article">
+
+<header class="site-header">
+<h1 class="site-heading">README - jquery.ui.phantomDrag.js</h1>
+</header>
 
 <dl>
 <dt>ykhs/jquery.ui.phantomDrag - GitHub</dt>
@@ -16,12 +20,13 @@
 <dd><a href="./jsdoc/index.html">http://ykhs.github.com/jquery.ui.phantomDrag/jsdoc/index.html</a></dd>
 </dl>
 
-<h2>機能概要</h2>
+<section>
+<h1>機能概要</h1>
 <p>要素をドラッグで移動したものとして仮定した値を .data() で拾える値に書き出します。<br>ドラッグ中の各イベントに bind して、その値を流用することで様々な動きを実現します。</p>
 <p>普通にドラッグしている物体を移動させても良いですし、他の要素を動かしたり、動かすための値を加工してみたり、使い方は様々です。</p>
 <p>サンプル見たほうが早いかも。<a href="sample.html">sample.html</a></p>
 
-<h2>使い方</h2>
+<h1>使い方</h1>
 
 <div class="code">
 <pre><code>// jQuery と jQuery UI を読み込み
@@ -53,7 +58,7 @@ $('#drag').bind('phantomdrag-move', function (e) {
 </code></pre>
 <!-- /div.code --></div>
 
-<h2>パラメータ</h2>
+<h1>パラメータ</h1>
 <ol>
 <li>{number} opsions.xmax X座標の最大値</li>
 <li>{number} opsions.xmin X座標の最小値</li>
@@ -62,7 +67,7 @@ $('#drag').bind('phantomdrag-move', function (e) {
 <li>{number} opsions.delay ドラッグ追従の遅延具合。大きいほど遅く、0で遅延無し</li>
 </ol>
 
-<h2>カスタムイベント</h2>
+<h1>カスタムイベント</h1>
 <ol>
 <li>phantomdrag-start: ドラッグ開始イベント</li>
 <li>phantomdrag-move: ドラッグ中イベント（ドラッグ中に毎フレーム呼ばれます）</li>
@@ -70,7 +75,7 @@ $('#drag').bind('phantomdrag-move', function (e) {
 <li>phantomdrag-stop: ドラッグ移動停止イベント（ドラッグ解除後も続く慣性移動が停止した合図です）</li>
 </ol>
 
-<h2>.data() の値</h2>
+<h1>.data() の値</h1>
 <ol>
 <li>phantomdrag-x: 要素の現在のX座標</li>
 <li>phantomdrag-fx: 要素のドラッグ開始X座標</li>
@@ -81,6 +86,9 @@ $('#drag').bind('phantomdrag-move', function (e) {
 <li>phantomdrag-dy: 要素の移動先Y座標</li>
 <li>phantomdrag-sy: 要素の1フレーム間でのY方向移動量</li>
 </ol>
+
+</section>
+<!-- /article.site-article --></article>
 
 </body>
 </html>

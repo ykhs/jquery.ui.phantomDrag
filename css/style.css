@@ -164,6 +164,14 @@ ol li {
 }
 
 /**
+ * Sample Module
+ */
+.info {
+  margin: 20px 0 0;
+  line-height: 2;
+}
+
+/**
  * Slider Module
  */
 #slider {
