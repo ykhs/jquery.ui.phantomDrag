@@ -60,8 +60,8 @@ $('#drag').bind('phantomdrag-move', function (e) {
 	var $el = $(e.target);
 
 	$el.css({
-		top: $el.data('phantomdrag-y'),
-		left: $el.data('phantomdrag-x')
+		top: $el.data('phantomdragY'),
+		left: $el.data('phantomdragX')
 	})
 });
 </code></pre>
@@ -86,14 +86,14 @@ $('#drag').bind('phantomdrag-move', function (e) {
 
 <h1>.data() の値</h1>
 <ol>
-<li>phantomdrag-x: 要素の現在のX座標</li>
-<li>phantomdrag-fx: 要素のドラッグ開始X座標</li>
-<li>phantomdrag-dx: 要素の移動先X座標</li>
-<li>phantomdrag-sx: 要素の1フレーム間でのX方向移動量</li>
-<li>phantomdrag-y: 要素の現在のY座標</li>
-<li>phantomdrag-fy: 要素のドラッグ開始Y座標</li>
-<li>phantomdrag-dy: 要素の移動先Y座標</li>
-<li>phantomdrag-sy: 要素の1フレーム間でのY方向移動量</li>
+<li>phantomdragX: 要素の現在のX座標</li>
+<li>phantomdragFx: 要素のドラッグ開始X座標</li>
+<li>phantomdragDx: 要素の移動先X座標</li>
+<li>phantomdragSx: 要素の1フレーム間でのX方向移動量</li>
+<li>phantomdragY: 要素の現在のY座標</li>
+<li>phantomdragFy: 要素のドラッグ開始Y座標</li>
+<li>phantomdragDy: 要素の移動先Y座標</li>
+<li>phantomdragSy: 要素の1フレーム間でのY方向移動量</li>
 </ol>
 
 </section>
