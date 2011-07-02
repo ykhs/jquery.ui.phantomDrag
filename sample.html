@@ -86,14 +86,14 @@
 			})
 		.bind('phantomdrag-move',
 			function (e) {
-				info_fx.val($(e.target).data('phantomdrag-fx'));
-				info_x.val($(e.target).data('phantomdrag-x'));
-				info_dx.val($(e.target).data('phantomdrag-dx'));
-				info_sx.val($(e.target).data('phantomdrag-sx'));
-				info_fy.val($(e.target).data('phantomdrag-fy'));
-				info_y.val($(e.target).data('phantomdrag-y'));
-				info_dy.val($(e.target).data('phantomdrag-dy'));
-				info_sy.val($(e.target).data('phantomdrag-sy'));
+				info_fx.val($(e.target).data('phantomdragFx'));
+				info_x.val($(e.target).data('phantomdragX'));
+				info_dx.val($(e.target).data('phantomdragDx'));
+				info_sx.val($(e.target).data('phantomdragSx'));
+				info_fy.val($(e.target).data('phantomdragFy'));
+				info_y.val($(e.target).data('phantomdragY'));
+				info_dy.val($(e.target).data('phantomdragDy'));
+				info_sy.val($(e.target).data('phantomdragSy'));
 			})
 		.bind('phantomdrag-release',
 			function (e) {
@@ -149,8 +149,8 @@
 		.bind('phantomdrag-move',
 			function (e) {
 				$(e.target).css({
-					top: $(e.target).data('phantomdrag-y'),
-					left: $(e.target).data('phantomdrag-x')
+					top: $(e.target).data('phantomdragY'),
+					left: $(e.target).data('phantomdragX')
 				})
 			})
 		.bind('phantomdrag-release',
@@ -217,8 +217,8 @@
 		.bind('phantomdrag-move',
 			function (e) {
 				mover.css({
-					top: element.data('phantomdrag-y') * 10,
-					left: element.data('phantomdrag-x') * 10
+					top: element.data('phantomdragY') * 10,
+					left: element.data('phantomdragX') * 10
 				})
 			})
 		.bind('phantomdrag-release',
@@ -295,7 +295,7 @@
 					left: centerX + r * Math.sin(radian)
 				})
 
-				deg += element.data('phantomdrag-sx');
+				deg += element.data('phantomdragSx');
 			})
 		.bind('phantomdrag-release',
 			function (e) {

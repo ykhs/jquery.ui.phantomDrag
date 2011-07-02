@@ -67,8 +67,8 @@
 *     var $el = $(e.target);
 *
 *     $el.css({
-*         top: $el.data('phantomdrag-y'),
-*         left: $el.data('phantomdrag-x')
+*         top: $el.data('phantomdragY'),
+*         left: $el.data('phantomdragX')
 *     })
 * });
 *
@@ -103,14 +103,14 @@
             .bind({
                 'mousedown': $.proxy(this._start, this)
             })
-            .data('phantomdrag-x', 0)
-            .data('phantomdrag-fx', 0)
-            .data('phantomdrag-dx', 0)
-            .data('phantomdrag-sx', 0)
-            .data('phantomdrag-y', 0)
-            .data('phantomdrag-fy', 0)
-            .data('phantomdrag-dy', 0)
-            .data('phantomdrag-sy', 0);
+            .data('phantomdragX', 0)
+            .data('phantomdragFx', 0)
+            .data('phantomdragDx', 0)
+            .data('phantomdragSx', 0)
+            .data('phantomdragY', 0)
+            .data('phantomdragFy', 0)
+            .data('phantomdragDy', 0)
+            .data('phantomdragSy', 0);
         },
 
         _startTimer: function () {
@@ -126,15 +126,15 @@
 
             this._stopTimer();
 
-            var x = this.element.data('phantomdrag-x'),
-                y = this.element.data('phantomdrag-y');
+            var x = this.element.data('phantomdragX'),
+                y = this.element.data('phantomdragY');
 
             this.element
-            .data('phantomdrag-on', true)
-            .data('phantomdrag-dx', x)
-            .data('phantomdrag-fx', x)
-            .data('phantomdrag-dy', y)
-            .data('phantomdrag-fy', y);
+            .data('phantomdragOn', true)
+            .data('phantomdragDx', x)
+            .data('phantomdragFx', x)
+            .data('phantomdragDy', y)
+            .data('phantomdragFy', y);
 
             this.mfx = Math.round(e.pageX);
             this.mfy = Math.round(e.pageY);
@@ -156,16 +156,16 @@
             var o = this.options,
                 $el = this.element;
 
-            if (!$el.data('phantomdrag-move')) {
-                $el.data('phantomdrag-move', true);
+            if (!$el.data('phantomdragMove')) {
+                $el.data('phantomdragMove', true);
             }
 
             this.mx = Math.round(e.pageX);
             this.my = Math.round(e.pageY);
 
             $el
-            .data('phantomdrag-dx', Math.max(o.xmin, Math.min($el.data('phantomdrag-fx') + this.mx - this.mfx, o.xmax)))
-            .data('phantomdrag-dy', Math.max(o.ymin, Math.min($el.data('phantomdrag-fy') + this.my - this.mfy, o.ymax)));
+            .data('phantomdragDx', Math.max(o.xmin, Math.min($el.data('phantomdragFx') + this.mx - this.mfx, o.xmax)))
+            .data('phantomdragDy', Math.max(o.ymin, Math.min($el.data('phantomdragFy') + this.my - this.mfy, o.ymax)));
 
             return false;
         },
@@ -173,7 +173,7 @@
         _end: function (e) {
 
             this.element
-            .data('phantomdrag-on', false)
+            .data('phantomdragOn', false)
             .trigger(this.EVENT_DRAG_RELEASE);
 
             $(document)
@@ -187,14 +187,14 @@
 
             var $el = this.element,
                 o = this.options,
-                fx = $el.data('phantomdrag-fx'),
-                sx = $el.data('phantomdrag-sx'),
-                dx = $el.data('phantomdrag-dx'),
-                x = $el.data('phantomdrag-x'),
-                fy = $el.data('phantomdrag-fy'),
-                sy = $el.data('phantomdrag-sy'),
-                dy = $el.data('phantomdrag-dy'),
-                y = $el.data('phantomdrag-y'),
+                fx = $el.data('phantomdragFx'),
+                sx = $el.data('phantomdragSx'),
+                dx = $el.data('phantomdragDx'),
+                x = $el.data('phantomdragX'),
+                fy = $el.data('phantomdragFy'),
+                sy = $el.data('phantomdragSy'),
+                dy = $el.data('phantomdragDy'),
+                y = $el.data('phantomdragY'),
                 stop = null,
                 border = o.stopSpeedBorder;
 
@@ -214,12 +214,12 @@
             }
 
             $el
-            .data('phantomdrag-x', x)
-            .data('phantomdrag-sx', sx)
-            .data('phantomdrag-dx', dx)
-            .data('phantomdrag-y', y)
-            .data('phantomdrag-sy', sy)
-            .data('phantomdrag-dy', dy);
+            .data('phantomdragX', x)
+            .data('phantomdragSx', sx)
+            .data('phantomdragDx', dx)
+            .data('phantomdragY', y)
+            .data('phantomdragSy', sy)
+            .data('phantomdragDy', dy);
 
             this.element.trigger(this.EVENT_DRAG_MOVE);
 
@@ -230,13 +230,13 @@
 
         _stop: function () {
 
-            if (!this.element.data('phantomdrag-on')) {
+            if (!this.element.data('phantomdragOn')) {
 
                 this._stopTimer();
 
                 this.element.trigger(this.EVENT_DRAG_STOP);
 
-                this.element.data('phantomdrag-move', false);
+                this.element.data('phantomdragMove', false);
             }
             return false;
         }
