@@ -40,14 +40,14 @@
 * phantomdrag-stop: ドラッグ移動停止イベント（ドラッグ解除後も続く慣性移動が停止した合図です）<br><br>
 *
 * [jQuery.data]<br>
-* phantomdrag-x: 要素の現在のX座標<br>
-* phantomdrag-fx: 要素のドラッグ開始X座標<br>
-* phantomdrag-dx: 要素の移動先X座標<br>
-* phantomdrag-sx: 要素の1フレーム間でのX方向移動量<br>
-* phantomdrag-y: 要素の現在のY座標<br>
-* phantomdrag-fy: 要素のドラッグ開始Y座標<br>
-* phantomdrag-dy: 要素の移動先Y座標<br>
-* phantomdrag-sy: 要素の1フレーム間でのY方向移動量<br>
+* phantomdragX: 要素の現在のX座標<br>
+* phantomdragFx: 要素のドラッグ開始X座標<br>
+* phantomdragDx: 要素の移動先X座標<br>
+* phantomdragSx: 要素の1フレーム間でのX方向移動量<br>
+* phantomdragY: 要素の現在のY座標<br>
+* phantomdragFy: 要素のドラッグ開始Y座標<br>
+* phantomdragDy: 要素の移動先Y座標<br>
+* phantomdragSy: 要素の1フレーム間でのY方向移動量<br>
 *
 * @example
 * // 初期化
