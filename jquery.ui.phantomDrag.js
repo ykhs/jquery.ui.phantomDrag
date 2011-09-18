@@ -24,56 +24,8 @@
 * @class 慣性ドラッグ機能を提供します
 * @name phantomDrag
 * @param {object} options 設定オブジェクト
-* @config {number} xmax X座標の最大値
-* @config {number} xmin X座標の最小値
-* @config {number} ymax Y座標の最大値
-* @config {number} ymin Y座標の最小値
-* @config {number} delay ドラッグ追従の遅延具合。大きいほど遅く、0で遅延無し
-* @memberOf jQuery.ui
-* @description 要素のドラッグ移動に慣性を加えた動きの値を jQuery.data に書き出します。
-* ドラッグ中のカスタムイベントに bind することで様々な動きを作ることが出来ます。<br><br>
-*
-* [Custom Event]<br>
-* phantomdrag-start: ドラッグ開始イベント<br>
-* phantomdrag-move: ドラッグ中イベント（ドラッグ中に毎フレーム呼ばれます）<br>
-* phantomdrag-release: ドラッグ解除イベント<br>
-* phantomdrag-stop: ドラッグ移動停止イベント（ドラッグ解除後も続く慣性移動が停止した合図です）<br><br>
-*
-* [jQuery.data]<br>
-* phantomdragX: 要素の現在のX座標<br>
-* phantomdragFx: 要素のドラッグ開始X座標<br>
-* phantomdragDx: 要素の移動先X座標<br>
-* phantomdragSx: 要素の1フレーム間でのX方向移動量<br>
-* phantomdragY: 要素の現在のY座標<br>
-* phantomdragFy: 要素のドラッグ開始Y座標<br>
-* phantomdragDy: 要素の移動先Y座標<br>
-* phantomdragSy: 要素の1フレーム間でのY方向移動量<br>
-*
-* @example
-* // 初期化
-*
-* $('#drag').phantomDrag({
-*     xmax: 660,
-*     xmin: 0,
-*     ymax: 260,
-*     ymin: 0
-* });
-*
-* // Custom Event への bind
-* // ドラッグ中の現在位置をCSSに反映する例です
-*
-* $('#drag').bind('phantomdrag-move', function (e) {
-*
-*     var $el = $(e.target);
-*
-*     $el.css({
-*         top: $el.data('phantomdragY'),
-*         left: $el.data('phantomdragX')
-*     })
-* });
-*
 */
-(function ($, window, document, Math, interval) {
+(function ($, window, document, undefined) {
 
     $.widget('ui.phantomDrag', {
 
@@ -242,4 +194,4 @@
         }
 
     });
-})(jQuery, this, this.document, Math, setInterval);
+})(jQuery, this, this.document);

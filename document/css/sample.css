@@ -1,0 +1,34 @@
+.sample-stage {
+    position: relative;
+    height: 400px;
+    margin: 20px 0 0;
+    border:1px solid #454545;
+}
+
+.box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #B23525;
+}
+
+#drag3 {
+    top: 125px;
+    left: 325px;
+}
+
+#mover1 {
+    width: 50px;
+    height: 50px;
+}
+
+#drag4 {
+    top: 260px;
+    left: 100px;
+}
+#mover2 {
+    top: 155px;
+    left: 455px;
+    width: 50px;
+    height: 50px;
+}
