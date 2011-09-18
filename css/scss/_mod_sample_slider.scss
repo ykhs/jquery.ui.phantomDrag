@@ -1,0 +1,26 @@
+/**
+ * Slider Module
+ */
+
+#slider {
+  position: relative;
+  width: 800px;
+  height: 200px;
+  margin: 2em 0;
+  overflow: hidden;
+
+  ul {
+	@include clearfix;
+    position: absolute;
+    margin: 0 0 0 -5px;
+  }
+
+  li {
+    float: left;
+    display: inline;
+    width: 100px;
+    height: 200px;
+    margin: 0 0 0 5px;
+    background: #454545;
+  }
+}
