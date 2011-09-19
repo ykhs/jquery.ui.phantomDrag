@@ -9,28 +9,20 @@
             info_fy = $('#info1-drag-fy'),
             info_y = $('#info1-drag-y'),
             info_dy = $('#info1-drag-dy'),
-            info_sy = $('#info1-drag-sy');
+            info_sy = $('#info1-drag-sy'),
+            $drag1 = $('#drag1');
 
-        $('#draggable1')
-        .phantomDrag()
-        .bind('phantomdrag-start', function (e) {
-            $('#info1-drag-status').val('Drag開始');
-        })
-        .bind('phantomdrag-move', function (e) {
-            info_fx.val($(e.target).data('phantomdragFx'));
-            info_x.val($(e.target).data('phantomdragX'));
-            info_dx.val($(e.target).data('phantomdragDx'));
-            info_sx.val($(e.target).data('phantomdragSx'));
-            info_fy.val($(e.target).data('phantomdragFy'));
-            info_y.val($(e.target).data('phantomdragY'));
-            info_dy.val($(e.target).data('phantomdragDy'));
-            info_sy.val($(e.target).data('phantomdragSy'));
-        })
-        .bind('phantomdrag-release', function (e) {
-            $('#info1-drag-status').val('Drag終了');
-        })
-        .bind('phantomdrag-stop', function (e) {
-            $('#info1-drag-status').val('慣性移動終了');
+        $drag1
+        .phantomDrag({
+            step: function (e, res) {
+                console.debug(this, arguments);
+                info_fx.val(res.startX);
+                info_fy.val(res.startY);
+                info_x.val(res.currentX);
+                info_y.val(res.currentY);
+                info_dx.val(res.destinationX);
+                info_dy.val(res.destinationY);
+            }
         })
     });
 })();
@@ -39,7 +31,7 @@
 (function () {
     $(function () {
 
-        var elements = $('.draggable2');
+        var elements = $('.drag2');
 
         elements
         .phantomDrag({
@@ -79,7 +71,7 @@
 (function () {
     $(function () {
 
-        var element = $('#draggable3'),
+        var element = $('#drag3'),
             mover = $('#mover1');
 
         element
@@ -118,7 +110,7 @@
 (function () {
     $(function () {
 
-        var element = $('#draggable4'),
+        var element = $('#drag4'),
             mover = $('#mover2'),
             deg = 0,
             r = 100,
