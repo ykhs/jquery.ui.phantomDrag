@@ -15,95 +15,158 @@
     $.widget('ui.phantomDrag', {
 
         options: {
+            defaultX: 0,
+            defaultY: 0,
+            xMax: Number.POSITIVE_INFINITY,
+            xMin: Number.NEGATIVE_INFINITY,
+            yMax: Number.POSITIVE_INFINITY,
+            yMin: Number.NEGATIVE_INFINITY,
             degree: 13
         },
 
-        startX: 0,
-        startY: 0,
-        currentX: 0,
-        currentY: 0,
         destinationX: 0,
         destinationY: 0,
-        intervalId: 0,
+        startX: 0,
+        startY: 0,
+        speedX: 0,
+        speedY: 0,
+        currentX: 0,
+        currentY: 0,
+        mouseStartX: 0,
+        mouseStartY: 0,
+        intervalID: 0,
         interval: 13,
         mousedown: false,
 
         _init: function () {
 
-            var offset = this.element.offset();
+            var self = this,
+                o = this.options;
 
-            this.startX = offset.left;
-            this.startY = offset.top;
-            this.element.mousedown($.proxy(this._dragStart, this));
+            self.destinationX = self.currentX = o.defaultX;
+            self.destinationY = self.currentY = o.defaultY;
 
-            return this;
+            self.element.mousedown($.proxy(self._dragStart, self));
+            return self;
         },
 
-        _dragStart: function (e) {
-            this.mousedown = true;
-            this._startTimer();
-            $(window).bind('mousemove', ($.proxy(this._dragmove, this)));
-            $(window).bind('mouseup', ($.proxy(this._dragEnd, this)));
-            this._trigger('start');
+        moveTo: function (x, y) {
+
+            var self = this,
+                o = self.options;
+
+            self.destinationX = Math.max(o.xMin, Math.min(x, o.xMax));
+            self.destinationY = Math.max(o.yMin, Math.min(y, o.yMax));
+
+            this._startAnimationTimer();
         },
 
-        _dragmove: function (e) {
+        _startAnimationTimer: function () {
 
-            var pageX = e.pageX,
-                pageY = e.pageY;
+            var self = this;
 
-            this.destinationX = pageX - this.startX,
-            this.destinationY = pageY - this.startY;
-
-            return false;
+            self._stopTimer();
+            self.intervalID = setInterval($.proxy(self._step, self), self.interval);
         },
 
-        _startTimer: function () {
-            this._stopTimer();
-            this.intervalId = setInterval($.proxy(this._step, this), this.interval);
+        _stopTimer: function () {
+
+            var self = this;
+
+            clearInterval(self.intervalID);
+            self.intervalID = 0;
         },
 
         _step: function () {
 
-            var myX = this.currentX,
-                myY = this.currentY,
-                distanceX = this.destinationX - myX,
-                distanceY = this.destinationY - myY,
+            var self = this,
+                o = self.options,
+                distanceX = self.destinationX - self.currentX,
+                distanceY = self.destinationY - self.currentY,
                 distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
 
-            if (distance > 1) {
-                this.currentX = myX + distanceX / this.options.degree;
-                this.currentY = myY + distanceY / this.options.degree;
+            if (distance > 1 || self.mousedown) {
+                self.speedX = distanceX / self.options.degree;
+                self.speedY = distanceY / self.options.degree;
+                self.currentX += self.speedX;
+                self.currentY += self.speedY;
             } else {
-                this.currentX = this.destinationX;
-                this.currentY = this.destinationY;
-                if (!this.mousedown) {
-                    this._stopTimer();
-                    this._trigger('stop');
-                }
+                self.currentX = self.destinationX;
+                self.currentY = self.destinationY;
+                self._stopTimer();
+                self._trigger('stop', 0, {
+                    startX: self.startX,
+                    startY: self.startY,
+                    destinationX: self.destinationX,
+                    destinationY: self.destinationY,
+                    speedX: self.speedX,
+                    speedY: self.speedY,
+                    currentX: self.currentX,
+                    currentY: self.currentY
+                });
             }
 
-            this._trigger('step', 0, {
-                startX: this.startX,
-                startY: this.startY,
-                currentX: this.currentX,
-                currentY: this.currentY,
-                destinationX: this.destinationX,
-                destinationY: this.destinationY
+            self._trigger('move', 0, {
+                startX: self.startX,
+                startY: self.startY,
+                destinationX: self.destinationX,
+                destinationY: self.destinationY,
+                speedX: self.speedX,
+                speedY: self.speedY,
+                currentX: self.currentX,
+                currentY: self.currentY
             });
+            return false;
         },
 
-        _stopTimer: function () {
-            clearInterval(this.intervalId);
-            this.intervalId = 0;
+        _dragStart: function (e) {
+
+            var self = this,
+                o = self.options;
+
+            self._startAnimationTimer();
+            self.mousedown = true;
+            self.startX = self.currentX;
+            self.startY = self.currentY;
+            self.mouseStartX = e.pageX;
+            self.mouseStartY = e.pageY;
+            $document.bind('mousemove', $.proxy(self._drag, self));
+            $document.bind('mouseup', $.proxy(self._dragEnd, self));
+            self._trigger('start');
+            return false;
+        },
+
+        _drag: function (e) {
+
+            var self = this,
+                o = self.options,
+                pageX = e.pageX,
+                pageY = e.pageY;
+
+            self.destinationX = Math.max(o.xMin, Math.min(self.startX + pageX - self.mouseStartX, o.xMax)),
+            self.destinationY = Math.max(o.yMin, Math.min(self.startY + pageY - self.mouseStartY, o.yMax));
+
+            return false;
         },
 
         _dragEnd: function (e) {
-            this.mousedown = false;
-            $(window).unbind('mousemove', $.proxy(this._drag, this));
-            $(window).unbind('mouseup', $.proxy(this._dragEnd, this));
-            this._trigger('release');
-        },
-    });
 
-})(jQuery, this, this.document);
+            var self = this;
+
+            self.mousedown = false;
+            $document.unbind('mousemove', $.proxy(self._drag, self));
+            $document.unbind('mouseup', $.proxy(self._dragEnd, self));
+            self._trigger('release', 0, {
+                startX: self.startX,
+                startY: self.startY,
+                destinationX: self.destinationX,
+                destinationY: self.destinationY,
+                speedX: self.speedX,
+                speedY: self.speedY,
+                currentX: self.currentX,
+                currentY: self.currentY
+            });
+            return false;
+        }
+    });
+})(jQuery, this, this.document, Math);
