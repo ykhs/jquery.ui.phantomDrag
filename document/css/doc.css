@@ -8,12 +8,13 @@ body {
 
 #doc {
     width: 960px;
-    margin: 30px auto;
+    margin: 0 auto;
+    padding: 0 0 30px;
     text-align: left;
 }
 
 #doc-header #doc-heading {
-    margin: 0;
+    margin: 1em 0 0;
     font-weight: bold;
     font-size: 48px;
 }
@@ -25,8 +26,8 @@ section h1 {
     color: #2A6CCC;
 }
 
-h1, ul, ol, dl {
-    margin: 1em 0 0;
+h1, ul, ol, dl  {
+    margin: 1.5em 0 0;
 }
 
 dt {
@@ -35,5 +36,5 @@ dt {
 }
 
 dd {
-    padding: 0 0 0 1em;
+    padding: 0 1em;
 }

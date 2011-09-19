@@ -27,8 +27,12 @@
     left: 100px;
 }
 #mover2 {
-    top: 155px;
+    top: 255px;
     left: 455px;
     width: 50px;
     height: 50px;
+}
+
+code {
+    font-family: "Lucida Console", monospace;
 }
