@@ -112,5 +112,31 @@ $(function () {
     })();
 
 
+    /*
+     * Thumbnail Slider
+     */
+    (function () {
+
+        var $slider_root = $('#slider'),
+            $slider_ul = $slider_root.find('ul'),
+            $slider_li = $slider_ul.find('li'),
+            sliderWidth = $slider_li.outerWidth(true) * $slider_li.size(),
+            viewWidth = 960;
+
+        $slider_ul.css({
+            width: sliderWidth
+        });
+
+        $slider_ul.phantomDrag({
+            xMax: 0,
+            xMin: -(sliderWidth - viewWidth),
+            step: function (e, res) {
+                $slider_ul.css({
+                    left: res.currentX
+                });
+            }
+        });
+    })();
+
     prettyPrint();
 });

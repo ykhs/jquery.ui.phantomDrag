@@ -36,3 +36,37 @@
 code {
     font-family: "Lucida Console", monospace;
 }
+
+/**
+ * Thumbnail Slider
+ */
+#slider {
+  position: relative;
+  height: 200px;
+  margin: 2em auto;
+  overflow: hidden;
+}
+#slider ul {
+  clear: both;
+  zoom: 1;
+  position: absolute;
+  margin: 0 0 0 -5px;
+}
+#slider ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+* html #slider ul {
+  height: 1px;
+}
+#slider li {
+  float: left;
+  display: inline;
+  width: 100px;
+  height: 200px;
+  margin: 0 0 0 5px;
+  background: #454545;
+}
