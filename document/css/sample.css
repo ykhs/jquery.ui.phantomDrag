@@ -1,0 +1,72 @@
+.sample-stage {
+    position: relative;
+    height: 400px;
+    margin: 20px 0 0;
+    border:1px solid #454545;
+}
+
+.box {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #B23525;
+}
+
+#drag3 {
+    top: 125px;
+    left: 325px;
+}
+
+#mover1 {
+    width: 50px;
+    height: 50px;
+}
+
+#drag4 {
+    top: 260px;
+    left: 100px;
+}
+#mover2 {
+    top: 255px;
+    left: 455px;
+    width: 50px;
+    height: 50px;
+}
+
+code {
+    font-family: "Lucida Console", monospace;
+}
+
+/**
+ * Thumbnail Slider
+ */
+#slider {
+  position: relative;
+  height: 200px;
+  margin: 2em auto;
+  overflow: hidden;
+}
+#slider ul {
+  clear: both;
+  zoom: 1;
+  position: absolute;
+  margin: 0 0 0 -5px;
+}
+#slider ul:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+* html #slider ul {
+  height: 1px;
+}
+#slider li {
+  float: left;
+  display: inline;
+  width: 100px;
+  height: 200px;
+  margin: 0 0 0 5px;
+  background: #454545;
+}
