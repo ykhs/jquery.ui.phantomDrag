@@ -1,0 +1,40 @@
+body {
+    text-align: center;
+    font: 16px/1.6 "Lucida Sans Unicode","Lucida Grande",Garuda,sans-serif;;
+    color: #454545;
+    background: #fcfcfc;
+    border-top: 10px solid #2E64B2;
+}
+
+#doc {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0 0 30px;
+    text-align: left;
+}
+
+#doc-header #doc-heading {
+    margin: 1em 0 0;
+    font-weight: bold;
+    font-size: 3em;
+}
+
+nav h1,
+section h1 {
+    font-weight: bold;
+    font-size: 2em;
+    color: #2A6CCC;
+}
+
+h1, ul, ol, dl  {
+    margin: 1.5em 0 0;
+}
+
+dt {
+    font-weight: bold;
+    color: #FF624E;
+}
+
+dd {
+    padding: 0 1em;
+}

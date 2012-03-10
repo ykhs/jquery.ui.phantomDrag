@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>jquery.ui.phantomDrag.js</title>
+<link href="resouces/css/reset.css" rel="stylesheet" type="text/css">
+<link href="resouces/css/doc.css" rel="stylesheet" type="text/css">
+<link href="resouces/css/sample.css" rel="stylesheet" type="text/css">
+<link href="resouces/css/sunburst.css" rel="stylesheet" type="text/css">
+<script src="resouces/js/html5.js"></script>
+<script src="resouces/js/prettify.js"></script>
+<script src="resouces/js/jquery.1.6.4.min.js"></script>
+<script src="resouces/js/jquery.ui.widget.min.js"></script>
+<script src="./jquery.ui.phantomDrag.js"></script>
+<script src="resouces/js/sample.js"></script>
+</head>
+<body>
+
+<article id="doc">
+
+<header id="doc-header">
+<h1 id="doc-heading">jquery.ui.phantomDrag.js</h1>
+<p><a href="https://github.com/ykhs/jquery.ui.phantomDrag">http://github.com/ykhs/jquery.ui.phantomDrag</a></p>
+<!-- /header#doc-header --></header>
+
+<section class="doc-section">
+<h1 class="section-heading">Get the virtual position of the dragged element</h1>
+
+<div id="info-drag-object" class="box" style="position: static; margin: 20px 0;">&nbsp;</div>
+
+<p>status&nbsp;<input type="text" id="info-status" value=""></p>
+
+<dl>
+<dt>X position</dt>
+<dd>start&nbsp;<input type="text" id="info-start-x" value="0"></dd>
+<dd>current&nbsp;<input type="text" id="info-x" value="0"></dd>
+<dd>destination&nbsp;<input type="text" id="info-destination-x" value="0"></dd>
+<dd>pixel per frame&nbsp;<input type="text" id="info-speed-x" value="0"></dd>
+</dl>
+
+<dl>
+<dt>Y position</dt>
+<dd>
+<dd>start&nbsp;<input type="text" id="info-start-y" value="0"></dd>
+<dd>current&nbsp;<input type="text" id="info-y" value="0"></dd>
+<dd>destination&nbsp;<input type="text" id="info-destination-y" value="0"></dd>
+<dd>pixel per frame&nbsp;<input type="text" id="info-speed-y" value="0"></dd>
+</dl>
+<!-- /section.doc-section --></section>
+
+<section class="doc-section">
+<h1>Usage</h1>
+<pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  step: function (event, message) {
+    /**
+     * A callback is called every frame while dragging
+     */
+    console.log(message.startX);       // => X position of the drag started
+    console.log(message.startY);       // => Y position of the drag started
+    console.log(message.currentX);     // => The current X position between destinations
+    console.log(message.currentY);     // => The current Y position between destinations
+    console.log(message.speedX);       // => Pixels per frame, X position
+    console.log(message.speedY);       // => Pixels per frame, Y position
+    console.log(message.destinationX); // => Destination X position of an element
+    console.log(message.destinationY); // => Destination Y position of an element
+  }
+})
+</code></pre>
+<!-- /section.doc-section --></section>
+
+<section class="doc-section">
+<h1>Options</h1>
+
+<dl>
+	<dt>defaultX {Number} = 0 [optional]</dt>
+	<dd>default X position</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  defaultX: 12345
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>defaultY {Number} = 0 [optional]</dt>
+	<dd>default Y position</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  defaultY: 12345
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>xMax {Number} = Infinity [optional]</dt>
+	<dd>The maximum value that can be dragged to the X direction</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  xMax: 12345
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>xMin {Number} = -Infinity [optional]</dt>
+	<dd>The maximum value that can be dragged to the negative X direction</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  xMin: -12345
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>yMax {Number} = Infinity [optional]</dt>
+	<dd>The maximum value that can be dragged to the Y direction</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  yMax: 12345
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>yMin {Number} = -Infinity [optional]</dt>
+	<dd>The maximum value that can be dragged to the negative Y direction</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  yMin: -12345
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>delay {Number} = 13 [optional]</dt>
+	<dd>The degree of delay that affects the movement of drug</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  delay: 13
+})</code></pre></dd>
+	<dd>Smaller numbers are weak, large numbers have a strong effect</dd>
+</dl>
+<!-- /section.doc-section --></section>
+
+<section class="doc-section">
+<h1>Callbacks</h1>
+
+<dl>
+	<dt>start {Function} = void [optional]</dt>
+	<dd>Called when the drag started</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  start: function (event) {
+    // do somthing
+  }
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>step {Function} = void [optional]</dt>
+	<dd>Called every frame while dragging</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  step: function (event, message) {
+    // do somthing
+  }
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>release {Function} = void [optional]</dt>
+	<dd>Called when you release the drag</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  release: function (event, message) {
+    // do somthing
+  }
+})</code></pre></dd>
+</dl>
+
+<dl>
+	<dt>stop {Function} = void [optional]</dt>
+	<dd>Called when the element has stopped moving</dd>
+	<dd><pre class="prettyprint"><code class="language-js">$('#element').phantomDrag({
+  stop: function (event, message) {
+    // do somthing
+  }
+})</code></pre></dd>
+</dl>
+
+</section>
+
+<section class="doc-section">
+<h1>Move the dragged element</h1>
+<div class="sample-stage">
+<div class="drag2 box">&nbsp;</div>
+<div class="drag2 box">&nbsp;</div>
+<div class="drag2 box">&nbsp;</div>
+<div class="drag2 box">&nbsp;</div>
+</div>
+<pre class="prettyprint"><code class="language-js">var $elements = $('.drag2');
+
+$elements.phantomDrag({
+  xMax: 860,
+  xMin: 0,
+  yMax: 300,
+  yMin: 0,
+  step: function (e, res) {
+    $(e.target).css({
+      top: res.currentY,
+      left: res.currentX
+    })
+  }
+});
+</code></pre>
+<!-- /section.doc-section --></section>
+
+<section class="doc-section">
+<h1>Move to another element</h1>
+<div class="sample-stage">
+<div id="drag3" class="box">&nbsp;</div>
+<div id="mover1" class="box">&nbsp;</div>
+</div>
+<pre class="prettyprint"><code class="language-js">var $element = $('#drag3'),
+    $mover = $('#mover1');
+
+$element.phantomDrag({
+  xMax: 910,
+  xMin: 0,
+  yMax: 350,
+  yMin: 0,
+  step: function (e, res) {
+    $mover.css({
+      top: res.currentY,
+      left: res.currentX
+    })
+  }
+});
+</code></pre>
+<!-- /section.doc-section --></section>
+
+<section class="doc-section">
+<h1>Converted to circular motion</h1>
+<div class="sample-stage">
+<div id="drag4" class="box">&nbsp;</div>
+<div id="mover2" class="box">&nbsp;</div>
+</div>
+<pre class="prettyprint"><code class="language-js">var $element = $('#drag4'),
+    $mover = $('#mover2'),
+    deg = 0,
+    r = 100,
+    centerX = 455,
+    centerY = 155,
+    radian = undefined;
+
+$element.phantomDrag({
+  step: function (e, res) {
+
+    radian = Math.PI / 180 * deg;
+
+    $mover.css({
+      top: centerY + r * Math.cos(radian),
+      left: centerX + r * Math.sin(radian)
+    })
+
+    deg += res.speedX;
+  }
+})
+</code></pre>
+<!-- /section.doc-section --></section>
+
+<section class="doc-section">
+<h1>Thumbnail Slider</h1>
+<div id="slider">
+<ul>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+<li>&nbsp;</li>
+</ul>
+</div>
+<pre class="prettyprint"><code class="language-js">var $slider_root = $('#slider'),
+    $slider_ul = $slider_root.find('ul'),
+    $slider_li = $slider_ul.find('li'),
+    sliderWidth = $slider_li.outerWidth(true) * $slider_li.size(),
+    viewWidth = 960;
+
+$slider_ul.css({
+  width: sliderWidth
+});
+
+$slider_ul.phantomDrag({
+  xMax: 0,
+  xMin: -(sliderWidth - viewWidth),
+  step: function (e, res) {
+    $slider_ul.css({
+      left: res.currentX
+    });
+  }
+});
+</code></pre>
+<!-- /section.doc-section --></section>
+
+<!-- /article#doc --></article>
+
+</body>
+</html>
